@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="retrogames" target="16" />
+      <module name="retrogames" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

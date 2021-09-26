@@ -99,8 +99,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -112,7 +112,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>assignment2.retrogames/assignment2.retrogames.HelloApplication</mainClass>
+                            <mainClass>assignment2.retrogames/assignment2.retrogames.RetroGames</mainClass>
                         </configuration>
                     </execution>
                 </executions>
