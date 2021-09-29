@@ -179,7 +179,7 @@ public class OrderedDictionary implements OrderedDictionaryADT {
             return null;
 
         if(k.compareTo(root.getData().getDataKey()) == 0)
-            return root.getData();
+            return null;
 
         Node currentNode = root;
         Node temp = root;
@@ -189,6 +189,7 @@ public class OrderedDictionary implements OrderedDictionaryADT {
             }
             currentNode = currentNode.getRightChild();
         }
+
         RetroGameRecord recordToReturn = null;
         assert temp != null;
         if(temp.hasLeftChild())
