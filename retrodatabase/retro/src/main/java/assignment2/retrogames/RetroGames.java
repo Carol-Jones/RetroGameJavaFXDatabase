@@ -16,7 +16,7 @@ public class RetroGames extends Application {
 
         Scene scene = new Scene(root);
 
-        stage.getIcons().add(new Image("file:src/main/resources/assignment/retrogames/images/GameLibIcon.png"));
+        stage.getIcons().add(new Image("file:src/main/resources/assignment/retrogames/images/DragonQuestSlimeIcon.png"));
         stage.setTitle("狩勝山's Retro Game Library");
 
         stage.setScene(scene);
