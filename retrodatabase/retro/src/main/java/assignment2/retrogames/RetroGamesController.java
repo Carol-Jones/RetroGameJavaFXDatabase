@@ -173,9 +173,9 @@ public class RetroGamesController implements Initializable {
     }
 
     public void previous() throws DictionaryException {
-        if(retroGame == null)
-            retroGame = database.smallest();
         retroGame = database.predecessor(retroGame.getDataKey());
+        if(retroGame == null)
+            retroGame = database.largest();
         showGame();
     }
 

@@ -25,6 +25,10 @@ public class OrderedDictionary implements OrderedDictionaryADT {
         }
 
         while (true) {
+            if(current == null)
+            {
+                throw new DictionaryException("There is no record matches the given key");
+            }
             comparison = current.getData().getDataKey().compareTo(k);
             if (comparison == 0) { // key found
                 return current.getData();
@@ -34,7 +38,7 @@ public class OrderedDictionary implements OrderedDictionaryADT {
                     // Key not found
                     throw new DictionaryException("There is no record matches the given key");
                 }
-                current = current.getLeftChild();
+                current = current.getRightChild();
             } else if (comparison == -1) {
                 if (current.getRightChild() == null) {
                     // Key not found
@@ -175,9 +179,6 @@ public class OrderedDictionary implements OrderedDictionaryADT {
      */
     @Override
     public RetroGameRecord predecessor(DataKey k) throws DictionaryException{
-        if(root.isEmpty())
-            return null;
-
         if(k.compareTo(root.getData().getDataKey()) == 0)
             return null;
 
@@ -189,9 +190,12 @@ public class OrderedDictionary implements OrderedDictionaryADT {
             }
             currentNode = currentNode.getRightChild();
         }
+        assert temp != null;
+        if(temp.getData().getDataKey().compareTo(root.getData().getDataKey()) == 0)
+            return null;
 
         RetroGameRecord recordToReturn = null;
-        assert temp != null;
+
         if(temp.hasLeftChild())
             recordToReturn = temp.getLeftChild().getData();
 
