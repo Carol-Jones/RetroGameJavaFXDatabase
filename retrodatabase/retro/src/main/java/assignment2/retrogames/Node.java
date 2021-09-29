@@ -66,14 +66,6 @@ public class Node {
         return (_rightChild != null);
     }
 
-    public boolean hasParent()	{
-        return (_parent != null);
-    }
-
-    public boolean isLeaf() {
-        return ((_leftChild == null) && (_rightChild == null));
-    }
-
     public boolean isEmpty() {
         return (_data.getDataKey() == null) ;
     }
