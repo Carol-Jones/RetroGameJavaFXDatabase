@@ -149,20 +149,34 @@ public class RetroGamesController implements Initializable {
         }
     }
 
-    public void first() {
+    public void first() throws DictionaryException {
         // Write this method
+        retroGame = database.largest();
+        showGame();
     }
 
-    public void last() {
+    public void last() throws DictionaryException {
         // Write this method
+        retroGame = database.smallest();
+        showGame();
     }
 
-    public void next() {
+    public void next() throws DictionaryException {
         // Write this method;
+        if(retroGame == null) {
+            retroGame = database.largest();
+            showGame();
+            return;
+        }
+        retroGame = database.successor(retroGame.getDataKey());
+        showGame();
     }
 
-    public void previous() {
-        // Write this method
+    public void previous() throws DictionaryException {
+        if(retroGame == null)
+            retroGame = database.smallest();
+        retroGame = database.predecessor(retroGame.getDataKey());
+        showGame();
     }
 
     public void play() {
@@ -182,7 +196,7 @@ public class RetroGamesController implements Initializable {
         }
     }
 
-    public void loadDictionary() {
+    public void loadDictionary() throws DictionaryException {
         Scanner input;
         int line = 0;
         try {

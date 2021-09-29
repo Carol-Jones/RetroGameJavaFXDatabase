@@ -66,23 +66,17 @@ public class OrderedDictionary implements OrderedDictionaryADT {
             nodeBefore = currentNode;
             currentNode = currentNode.getRightChild();
         }
-        if((currentNode != null)) {
 
+        Node newNode = new Node(r);
+        if(nodeBefore == null) {
+            newNode.setRightChild(root);
+            root = newNode;
         }
         else {
-            Node newNode = new Node(r);
-            if(nodeBefore == null) {
-                newNode.setRightChild(root);
-                root = newNode;
-            }
-            else {
-                newNode.setRightChild(currentNode);
-                newNode.setLeftChild(nodeBefore);
-                nodeBefore.setRightChild(newNode);
-            }
+            newNode.setRightChild(currentNode);
+            newNode.setLeftChild(nodeBefore);
+            nodeBefore.setRightChild(newNode);
         }
-
-
     }
 
     /**
@@ -108,8 +102,23 @@ public class OrderedDictionary implements OrderedDictionaryADT {
      */
     @Override
     public RetroGameRecord successor(DataKey k) throws DictionaryException{
-        // Write this method
-        return null; // change this statement
+        if(root.isEmpty())
+            return null;
+
+        Node currentNode = root;
+        Node temp = root;
+        while((currentNode != null)) {
+            if (k.compareTo(currentNode.getData().getDataKey()) == 0) {
+                temp = currentNode;
+            }
+            currentNode = currentNode.getRightChild();
+        }
+        RetroGameRecord recordToReturn = null;
+        assert temp != null;
+        if(temp.hasRightChild())
+            recordToReturn = temp.getRightChild().getData();
+
+        return recordToReturn;
     }
 
 
@@ -124,8 +133,23 @@ public class OrderedDictionary implements OrderedDictionaryADT {
      */
     @Override
     public RetroGameRecord predecessor(DataKey k) throws DictionaryException{
-        // Write this method
-        return null; // change this statement
+        if(root.isEmpty())
+            return null;
+
+        Node currentNode = root;
+        Node temp = root;
+        while((currentNode != null)) {
+            if (k.compareTo(currentNode.getData().getDataKey()) == 0) {
+                temp = currentNode;
+            }
+            currentNode = currentNode.getRightChild();
+        }
+        RetroGameRecord recordToReturn = null;
+        assert temp != null;
+        if(temp.hasLeftChild())
+            recordToReturn = temp.getLeftChild().getData();
+
+        return recordToReturn;
     }
 
     /**
@@ -137,7 +161,23 @@ public class OrderedDictionary implements OrderedDictionaryADT {
     @Override
     public RetroGameRecord smallest() throws DictionaryException{
         // Write this method
-        return null; // change this statement
+        if(root.isEmpty())
+            return null;
+
+        Node currentNode = root;
+        Node smallest = root;
+        DataKey key = root.getData().getDataKey();
+        while((currentNode != null)) {
+            if(key.compareTo(currentNode.getData().getDataKey()) == -1) {
+                key = currentNode.getData().getDataKey();
+                smallest = currentNode;
+            }
+
+            currentNode = currentNode.getRightChild();
+        }
+        RetroGameRecord recordToReturn = smallest.getData();
+
+        return recordToReturn;
     }
 
     /*
@@ -146,8 +186,23 @@ public class OrderedDictionary implements OrderedDictionaryADT {
      */
     @Override
     public RetroGameRecord largest() throws DictionaryException{
-        // Write this method
-        return null; // change this statement
+        if(root.isEmpty())
+            return null;
+
+        Node currentNode = root;
+        Node largest = root;
+        DataKey key = root.getData().getDataKey();
+        while((currentNode != null)) {
+            if(key.compareTo(currentNode.getData().getDataKey()) == 1) {
+                key = currentNode.getData().getDataKey();
+                largest = currentNode;
+            }
+
+            currentNode = currentNode.getRightChild();
+        }
+        RetroGameRecord recordToReturn = largest.getData();
+
+        return recordToReturn;
     }
 
     /* Returns true if the dictionary is empty, and true otherwise. */
