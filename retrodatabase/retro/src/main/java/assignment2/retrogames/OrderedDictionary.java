@@ -59,7 +59,7 @@ public class OrderedDictionary implements OrderedDictionaryADT {
             root.setData(r);
             return;
         }
-        // Completed!
+        // Completed?
         Node currentNode = root;
         Node nodeBefore = null;
         while((currentNode != null)) {
@@ -89,6 +89,41 @@ public class OrderedDictionary implements OrderedDictionaryADT {
     @Override
     public void remove(DataKey k) throws DictionaryException {
         // Write this method
+        if(root.isEmpty())
+            return;
+
+        Node currentNode = root;
+        Node delete = root;
+        while((currentNode != null)) {
+            if (k.compareTo(currentNode.getData().getDataKey()) == 0) {
+                delete = currentNode;
+            }
+            currentNode = currentNode.getRightChild();
+        }
+
+        if(delete != null) {
+            if(delete == root)
+            {
+                Node temp = root.getRightChild();
+                root.setRightChild(null);
+                root = temp;
+            }
+            else if(delete.hasLeftChild() && delete.hasRightChild())
+            {
+                Node temp = delete.getRightChild();
+                Node temp2 = delete.getLeftChild();
+                temp.setLeftChild(delete.getLeftChild());
+                temp2.setRightChild(delete.getRightChild());
+                delete.setRightChild(null);
+                delete.setLeftChild(null);
+            }
+            else
+            {
+                Node temp = delete.getLeftChild();
+                delete.setLeftChild(null);
+                temp.setRightChild(null);
+            }
+        }
     }
 
     /**
@@ -104,6 +139,9 @@ public class OrderedDictionary implements OrderedDictionaryADT {
     public RetroGameRecord successor(DataKey k) throws DictionaryException{
         if(root.isEmpty())
             return null;
+
+        if(k.compareTo(smallest().getDataKey()) == 0)
+            return smallest();
 
         Node currentNode = root;
         Node temp = root;
@@ -135,6 +173,9 @@ public class OrderedDictionary implements OrderedDictionaryADT {
     public RetroGameRecord predecessor(DataKey k) throws DictionaryException{
         if(root.isEmpty())
             return null;
+
+        if(k.compareTo(root.getData().getDataKey()) == 0)
+            return root.getData();
 
         Node currentNode = root;
         Node temp = root;
