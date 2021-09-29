@@ -51,11 +51,38 @@ public class OrderedDictionary implements OrderedDictionaryADT {
      * a record with the same key as r is already in the dictionary.
      *
      * @param r
-     * @throws birds.DictionaryException
+     * @throws games.DictionaryException
      */
     @Override
     public void insert(RetroGameRecord r) throws DictionaryException {
-        // Write this method
+        if(root.isEmpty()) {
+            root.setData(r);
+            return;
+        }
+        // Completed!
+        Node currentNode = root;
+        Node nodeBefore = null;
+        while((currentNode != null)) {
+            nodeBefore = currentNode;
+            currentNode = currentNode.getRightChild();
+        }
+        if((currentNode != null)) {
+
+        }
+        else {
+            Node newNode = new Node(r);
+            if(nodeBefore == null) {
+                newNode.setRightChild(root);
+                root = newNode;
+            }
+            else {
+                newNode.setRightChild(currentNode);
+                newNode.setLeftChild(nodeBefore);
+                nodeBefore.setRightChild(newNode);
+            }
+        }
+
+
     }
 
     /**

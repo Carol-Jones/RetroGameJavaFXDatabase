@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="971.0" style="-fx-background-image: url(&quot;file:src/main/resources/assignment2/retrogames/images/GameLibBackground.jpg&quot;); " xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2.retrogames.RetroGamesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="971.0" style="-fx-background-image: url(&quot;file:src/main/resources/assignment2/retrogames/images/UNTBackground.png&quot;); " xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2.retrogames.RetroGamesController">
     <top>
         <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
             <menus>
@@ -119,7 +119,7 @@
             <bottom>
                 <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                     <children>
-                        <Label prefHeight="21.0" prefWidth="76.0" text="Bird Name" />
+                        <Label prefHeight="21.0" prefWidth="76.0" text="Game Name" />
                         <TextField fx:id="name" prefHeight="29.0" prefWidth="186.0">
                             <HBox.margin>
                                 <Insets left="10.0" />

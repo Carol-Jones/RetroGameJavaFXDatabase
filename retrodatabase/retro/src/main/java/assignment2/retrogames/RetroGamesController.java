@@ -105,7 +105,7 @@ public class RetroGamesController implements Initializable {
             player.stop();
         }
         String img = retroGame.getImage();
-        Image gameImage = new Image("file:src/main/resources/assignment/retrogames/images/" + img);
+        Image gameImage = new Image("file:src/main/resources/assignment2/retrogames/images/" + img);
         image.setImage(gameImage);
         title.setText(retroGame.getDataKey().getGameName());
         about.setText(retroGame.getAbout());
@@ -166,7 +166,7 @@ public class RetroGamesController implements Initializable {
     }
 
     public void play() {
-        String filename = "src/main/resources/assignment/retrogames/sounds/" + retroGame.getSound();
+        String filename = "src/main/resources/assignment2/retrogames/sounds/" + retroGame.getSound();
         media = new Media(new File(filename).toURI().toString());
         player = new MediaPlayer(media);
         play.setDisable(true);
@@ -188,21 +188,21 @@ public class RetroGamesController implements Initializable {
         try {
             String gameName = "";
             String description;
-            int size = 0;
+            int type = 0;
             input = new Scanner(new File("RetroGamesDatabase.txt"));
             while (input.hasNext()) // read until  end of file
             {
                 String data = input.nextLine();
                 switch (line % 3) {
                     case 0:
-                        size = Integer.parseInt(data);
+                        type = Integer.parseInt(data);
                         break;
                     case 1:
                         gameName = data;
                         break;
                     default:
                         description = data;
-                        database.insert(new RetroGameRecord(new DataKey(gameName, size), description, gameName + ".mp3", gameName + ".jpg"));
+                        database.insert(new RetroGameRecord(new DataKey(gameName, type), description, gameName + ".mp3", gameName + ".jpg"));
                         break;
                 }
                 line++;
