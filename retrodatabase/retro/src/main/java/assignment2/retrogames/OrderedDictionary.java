@@ -102,7 +102,7 @@ public class OrderedDictionary implements OrderedDictionaryADT {
         }
 
         if(delete != null) {
-            if(delete == root)
+            if(delete == root && root.hasRightChild())
             {
                 Node temp = root.getRightChild();
                 root.setRightChild(null);
@@ -117,11 +117,15 @@ public class OrderedDictionary implements OrderedDictionaryADT {
                 delete.setRightChild(null);
                 delete.setLeftChild(null);
             }
-            else
+            else if(delete.hasLeftChild() && !(delete.hasRightChild()))
             {
                 Node temp = delete.getLeftChild();
                 delete.setLeftChild(null);
                 temp.setRightChild(null);
+            }
+            else
+            {
+                root = new Node();
             }
         }
     }
